@@ -8,8 +8,8 @@ import med.voll.api.dto.AddressDTO;
 
 @Embeddable
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Address {
 
     private String street;
