@@ -1,0 +1,1 @@
+alter table doctors add column phone varchar(11) default '' not null;

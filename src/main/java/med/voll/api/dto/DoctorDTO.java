@@ -18,6 +18,10 @@ public record DoctorDTO(
         String email,
 
         @NotBlank
+        @Pattern(regexp = "\\d{11}")
+        String phone,
+
+        @NotBlank
         @Pattern(regexp = "\\d{4,6}")
         String crm,
 
