@@ -30,4 +30,28 @@ public class Address {
         this.complement = addressDTO.complement();
     }
 
+    public void update(AddressDTO addressDTO) {
+        if (addressDTO.street() != null) {
+            this.street = addressDTO.street();
+        }
+        if (addressDTO.neighborhood() != null) {
+            this.neighborhood = addressDTO.neighborhood();
+        }
+        if (addressDTO.zipCode() != null) {
+            this.zipCode = addressDTO.zipCode();
+        }
+        if (addressDTO.city() != null) {
+            this.city = addressDTO.city();
+        }
+        if (addressDTO.state() != null) {
+            this.state = addressDTO.state();
+        }
+        if (addressDTO.number() != null) {
+            this.number = addressDTO.number();
+        }
+        if (addressDTO.complement() != null) {
+            this.complement = addressDTO.complement();
+        }
+    }
+
 }

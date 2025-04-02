@@ -1,10 +1,12 @@
 package med.voll.api.entity.doctor;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.dto.DoctorUpdateDTO;
 import med.voll.api.entity.address.Address;
 import med.voll.api.dto.DoctorDTO;
 
@@ -38,6 +40,18 @@ public class Doctor {
         this.crm = doctorDTO.crm();
         this.specialty = doctorDTO.specialty();
         this.address = new Address(doctorDTO.address());
+    }
+
+    public void update(@Valid DoctorUpdateDTO doctorUpdateDTO) {
+        if (doctorUpdateDTO.name() != null) {
+            this.name = doctorUpdateDTO.name();
+        }
+        if (doctorUpdateDTO.phone() != null) {
+            this.phone = doctorUpdateDTO.phone();
+        }
+        if (doctorUpdateDTO.addressDTO() != null) {
+            this.address.update(doctorUpdateDTO.addressDTO());
+        }
     }
 
 }
