@@ -1,0 +1,1 @@
+alter table doctors add column active boolean default true not null;

@@ -33,6 +33,8 @@ public class Doctor {
     @Embedded
     private Address address;
 
+    private Boolean active;
+
     public Doctor(DoctorDTO doctorDTO) {
         this.name = doctorDTO.name();
         this.email = doctorDTO.email();
@@ -40,6 +42,7 @@ public class Doctor {
         this.crm = doctorDTO.crm();
         this.specialty = doctorDTO.specialty();
         this.address = new Address(doctorDTO.address());
+        this.active = true;
     }
 
     public void update(@Valid DoctorUpdateDTO doctorUpdateDTO) {
@@ -54,4 +57,7 @@ public class Doctor {
         }
     }
 
+    public void delete() {
+        this.active = false;
+    }
 }
