@@ -60,4 +60,5 @@ public class Doctor {
     public void delete() {
         this.active = false;
     }
+
 }
