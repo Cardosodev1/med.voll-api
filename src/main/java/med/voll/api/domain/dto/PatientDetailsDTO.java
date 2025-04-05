@@ -1,7 +1,7 @@
-package med.voll.api.dto;
+package med.voll.api.domain.dto;
 
-import med.voll.api.entity.address.Address;
-import med.voll.api.entity.patient.Patient;
+import med.voll.api.domain.entity.address.Address;
+import med.voll.api.domain.entity.patient.Patient;
 
 public record PatientDetailsDTO(Long id,
                                 String name,

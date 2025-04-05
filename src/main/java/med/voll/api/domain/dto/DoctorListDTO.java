@@ -1,7 +1,7 @@
-package med.voll.api.dto;
+package med.voll.api.domain.dto;
 
-import med.voll.api.entity.doctor.Doctor;
-import med.voll.api.entity.doctor.Specialty;
+import med.voll.api.domain.entity.doctor.Doctor;
+import med.voll.api.domain.entity.doctor.Specialty;
 
 public record DoctorListDTO(Long id,
                             String name,
