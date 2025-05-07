@@ -1,13 +1,13 @@
-package med.voll.api.domain.dto;
+package med.voll.api.domain.dto.patient;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.domain.entity.doctor.Specialty;
+import med.voll.api.domain.dto.address.AddressDTO;
 
-public record DoctorDTO(
+public record PatientDTO(
 
         @NotNull
         @NotBlank
@@ -22,11 +22,8 @@ public record DoctorDTO(
         String phone,
 
         @NotBlank
-        @Pattern(regexp = "\\d{4,6}")
-        String crm,
-
-        @NotNull
-        Specialty specialty,
+        @Pattern(regexp = "\\d{11}")
+        String cpf,
 
         @NotNull
         @Valid

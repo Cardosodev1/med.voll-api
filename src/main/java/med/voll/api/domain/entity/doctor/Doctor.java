@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.domain.dto.DoctorUpdateDTO;
+import med.voll.api.domain.dto.doctor.DoctorUpdateDTO;
 import med.voll.api.domain.entity.address.Address;
-import med.voll.api.domain.dto.DoctorDTO;
+import med.voll.api.domain.dto.doctor.DoctorDTO;
 
 @Entity
 @Table(name = "doctors")

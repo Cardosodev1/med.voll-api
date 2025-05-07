@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.domain.dto.PatientDTO;
-import med.voll.api.domain.dto.PatientUpdateDTO;
+import med.voll.api.domain.dto.patient.PatientDTO;
+import med.voll.api.domain.dto.patient.PatientUpdateDTO;
 import med.voll.api.domain.entity.address.Address;
 
 @Entity
