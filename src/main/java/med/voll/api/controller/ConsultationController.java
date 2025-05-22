@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("consultations")
+@RequestMapping("/consultations")
 public class ConsultationController {
 
     @Autowired
@@ -22,8 +22,8 @@ public class ConsultationController {
     @PostMapping
     @Transactional
     public ResponseEntity schedule(@RequestBody @Valid ConsultationDTO dto) {
-        service.schedule(dto);
-        return ResponseEntity.ok(new ConsultationDetailsDTO(null, null, null, null));
+        var details = service.schedule(dto);
+        return ResponseEntity.ok(details);
     }
 
 }
