@@ -1,13 +1,12 @@
 package med.voll.api.domain.repository;
 
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotNull;
 import med.voll.api.domain.entity.doctor.Doctor;
 import med.voll.api.domain.entity.doctor.Specialty;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +17,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     @Query("""
             SELECT d FROM Doctor d
             WHERE
-            d.active = 1
+            d.active = TRUE
             AND
             d.specialty = :specialty
             AND
@@ -27,8 +26,16 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
                 WHERE
                 c.dateConsultation = :dateConsultation
             )
-            ORDER BY RAND()
+            ORDER BY FUNCTION('RANDOM')
             LIMIT 1
             """)
     Doctor chooseRandomDoctor(Specialty specialty, LocalDateTime dateConsultation);
+
+    @Query("""
+            SELECT d.active
+            FROM Doctor d
+            WHERE
+            d.id = :id
+            """)
+    Boolean findActiveById(Long id);
 }
