@@ -2,6 +2,7 @@ package med.voll.api.domain.dto.consultation;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import med.voll.api.domain.entity.doctor.Specialty;
 
 import java.time.LocalDateTime;
 
@@ -14,5 +15,7 @@ public record ConsultationDTO(
 
         @NotNull
         @Future
-        LocalDateTime dateConsultation) {
+        LocalDateTime dateConsultation,
+
+        Specialty specialty) {
 }
