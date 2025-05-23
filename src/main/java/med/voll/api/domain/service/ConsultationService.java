@@ -1,6 +1,7 @@
 package med.voll.api.domain.service;
 
 import med.voll.api.domain.ValidationException;
+import med.voll.api.domain.dto.consultation.ConsultationCancellationDTO;
 import med.voll.api.domain.dto.consultation.ConsultationDTO;
 import med.voll.api.domain.dto.consultation.ConsultationDetailsDTO;
 import med.voll.api.domain.entity.consultation.Consultation;
@@ -8,7 +9,8 @@ import med.voll.api.domain.entity.doctor.Doctor;
 import med.voll.api.domain.repository.ConsultationRepository;
 import med.voll.api.domain.repository.DoctorRepository;
 import med.voll.api.domain.repository.PatientRepository;
-import med.voll.api.domain.validations.scheduling.IValidator;
+import med.voll.api.domain.validations.cancellation.ICancellation;
+import med.voll.api.domain.validations.scheduling.IScheduling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,10 @@ public class ConsultationService {
     private PatientRepository patientRepository;
 
     @Autowired
-    private List<IValidator> validators;
+    private List<IScheduling> validators;
+
+    @Autowired
+    private List<ICancellation> cancellationValidators;
 
     public ConsultationDetailsDTO schedule(ConsultationDTO dto) {
         if (!patientRepository.existsById(dto.idPatient())) {
@@ -46,7 +51,7 @@ public class ConsultationService {
             throw new ValidationException("Não existe médico disponível nessa data!");
         }
 
-        var consultation = new Consultation(null, doctor, patient, dto.dateConsultation());
+        var consultation = new Consultation(null, doctor, patient, dto.dateConsultation(), null);
         consultationRepository.save(consultation);
 
         return new ConsultationDetailsDTO(consultation);
@@ -62,6 +67,17 @@ public class ConsultationService {
         }
 
         return doctorRepository.chooseRandomDoctor(dto.specialty(), dto.dateConsultation());
+    }
+
+    public void cancel(ConsultationCancellationDTO dto) {
+        if (!consultationRepository.existsById(dto.idConsultation())) {
+            throw new ValidationException("Id da consulta informado não existe!");
+        }
+
+        cancellationValidators.forEach(v -> v.validate(dto));
+
+        var consultation = consultationRepository.getReferenceById(dto.idConsultation());
+        consultation.cancel(dto.reason());
     }
 
 }

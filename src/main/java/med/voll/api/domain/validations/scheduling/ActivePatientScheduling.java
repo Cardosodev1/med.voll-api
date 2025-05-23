@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ActivePatientValidator implements IValidator {
+public class ActivePatientScheduling implements IScheduling {
 
     @Autowired
     private PatientRepository repository;

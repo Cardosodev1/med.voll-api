@@ -8,7 +8,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Component
-public class AdvanceTimeValidator implements IValidator {
+public class AdvanceTimeScheduling implements IScheduling {
 
     @Override
     public void validate(ConsultationDTO dto) {
