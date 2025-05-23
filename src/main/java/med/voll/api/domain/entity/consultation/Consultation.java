@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.entity.doctor.Doctor;
 import med.voll.api.domain.entity.patient.Patient;
+import med.voll.api.domain.validations.cancellation.CancellationReason;
 
 import java.time.LocalDateTime;
 
@@ -32,5 +33,13 @@ public class Consultation {
 
     @JoinColumn(name = "date_consultation")
     private LocalDateTime dateConsultation;
+
+    @Column(name = "cancellation_reason")
+    @Enumerated(EnumType.STRING)
+    private CancellationReason cancellationReason;
+
+    public void cancel(CancellationReason reason) {
+        this.cancellationReason = reason;
+    }
 
 }
